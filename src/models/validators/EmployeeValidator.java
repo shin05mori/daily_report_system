@@ -18,12 +18,12 @@ public class EmployeeValidator {
         }
 
         String name_error = validateName(e.getName());
-        if(!name_error.equals("")); {
+        if(!name_error.equals("")) {
             errors.add(name_error);
         }
 
         String password_error = validatePassword(e.getPassword(), passwordCheckFlag);
-        if(!password_error.equals("")); {
+        if(!password_error.equals("")) {
             errors.add(password_error);
         }
 
@@ -40,7 +40,7 @@ public class EmployeeValidator {
         // すでに登録されている社員番号との重複チェック
         if(codeDuplicateCheckFlag) {
             EntityManager em = DBUtil.createEntityManager();
-            long employees_count = (long)em.createNamedQuery("checkRegisterdCode", Long.class).setParameter("code", code).getSingleResult();
+            long employees_count = (long)em.createNamedQuery("checkRegisteredCode", Long.class).setParameter("code", code).getSingleResult();
             em.close();
             if(employees_count > 0) {
                 return "入力された社員番号の情報はすでに存在しています。";
